@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+
+\begin{document}
+
+\section{Review Result}
+
+\subsection{Answer the research question}
+To attack the problem of model construction and state explosion of model checking technology, some make efforts to build a dedicated model checker for a specific programming language[1]. Others build tools such as JCAT [2] 
+and Java PathFinder [3],that translate a program directly into a relatively expressive verifier input language. 
+
+
+Different from the above, Corbett's team uses a {\itshape component-based tool architecture for model extraction} which is called Bandera. The architecture of Bandera is like a compiler. It uses intermediate language called Jimple to stage the transformation from JAVA to model-checker input languages. It is built on {\itshape soot} compiler framework, using its own front-end called JJJC to maintain correspondence between a Java source program and its Jimple representation. 
+
+
+Bandera uses three main methods to solve the problems, including component elimination, data abstraction, and component restriction. Component elimination means eliminate components irrelevant to the property being verified. One of the component of Bandera called Slicer is responsible for this. Date abstraction means abstract variables that contains unnecessary details to a smaller set that only contains necessary detail for verifying property. Abstraction-Based Specializer, also one of Bandera's components, provides automated support for reducing model size via data abstraction. It has an {\itshape abstraction library} indexed by concrete type correspond to an abstraction type. Users choose abstractions for relevant variables, then a type inference phase propagates this information and infers abstraction types for the remaining variables and for each expression in the program. Component restriction means when components can't be explictly eliminated or abstraction can't be defined, we can limit the number of components or set bounds among components to construct a {\itshape restrict model}. Although it can't capture all behaviors of the program, it's useful to find design errors in the program since many design errors are manifest in small versions of a system. Bandera uses a model-generator to setting bounds for various system components.
+
+
+Besides the components mentioned above, Bandera also has Back End to take the sliced and abstracted program and produce verifier-specific representations for targeted verifiers.The back end components communicate through an intermediary between compiler-based representations and 
+verifier-based representations called BIR. Through BIR, it's simple to  write translators for target verifiers because user only need to write a translator from BIR to the input language of the verifier. BIR contains some higher-level constructs to facilitate modeling Java so some constructs don't need to be removed. Instead, translators can implement these constructs in the most efficient in the verifier input language. This can help produce more compact models.
+
+\subsection{limitations}
+For the approaches mentioned above, they all have some limitations. For example, building a model checker for a specific language makes it difficult to keep the checking engine state-of-the-art and new methods for curbing the state explosion must be recoded in the tool’s dedicated engine[4]. Building translation tools may result in larger models due to mismatch between the semantics of the two languages. Bandera, although has advantage on scalability, flexibility and extensibility, it for now still can't handle all features of Java such as  interfaces or user-thrown exceptions.
+\end{document}
