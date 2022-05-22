@@ -1,0 +1,34 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+
+
+\begin{document}
+
+
+
+\section{Review Result}
+
+
+
+\subsection{Answer the research question}
+
+In recent years, some reverse engineering tools have been developed. However, they are oriented to software written in one specific programming language and extract only one or a few particular aspects of the software from source code. This limitation brings difficulties if the maintainers want to extract information from source code other than the information the tools provide. 
+
+Hai Huang presents a rule-based tool MG (Model Generator)[1] for reverse engineering from source code to graphical models defined in MERA (MetaEntity-Relation-Attribute) that is a uniform language for a variety of graphical models. MG enables maintainers to obtain the information they need and produce software specification in different models by specifying rules for generating it. It is also independent of programming languages in which source code is written. It is able to generate four graphical models: IOPM (Internal Operational Profile Model) representing control flow, EOPM (External Operational Profile Model) representing external behavior of a system, FSM (Functional Structure Model), UIM (User Interface Model).
+
+A generation rule consists of two parts: Triggers and actions. A trigger indicates when the rule can be applied. Each rule may have one or more triggers. When any of the triggers in the rule has triggered, actions in the rule are executed sequentially. Each trigger has a set of conditions to be satisfied. The first one is a required condition called node type. It, indicates to which type of a node in the syntax tree the rule is applied.
+
+Each rule has a set of actions which are executed sequentially. There are six types of actions: Graph, entity, relation, connect, process, and group. A graph action creates a graph. It takes four arguments - the name of the graph, formalism used in the graph, entry and exit entities of the graph. The scope of the graph action includes all the subsequent actions contained in the rule and all the subsequent actions executed before the next graph action is executed.
+
+Use rule-based approach which can bring flexibility by explicitly representing the knowledge as rules of model generation. Any change of the knowledge only affects the rules that are much easier to modify than the tools themselves so that few modifications of the tool are needed. For a given graphical model formalism, generation rules describe how to translate each primitive element of a programming language into a piece of a diagram in the graphical model and how to assemble the produced pieces of diagrams and generate diagrams from them.
+
+It is flexible to deal with different programming languages and extract various types of information from source code. The rule-based approach provides users with a means of customizing the tools so that the tools can deal with different programming languages and produce the models that the users want.
+
+
+\subsection{limitations}
+
+A limitation of MG is that it is difficult to generate a certain type of models such as CPM by using only the rule-based approach. The more expressive power the rules have, the more variety of models can be generated and at the same time the more complicated the rules are. Complicated rules lead to difficulties to create rules and to verify the rules. Due to these problems, the rules should not be complicated and hence the expressive power of rules should be limited to some extent.
+
+\end{document}
+
