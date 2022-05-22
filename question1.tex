@@ -1,0 +1,32 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+
+
+
+
+
+\begin{document}
+
+
+
+\section{Review Result}
+
+
+
+\subsection{Answer the research question}
+
+Focusing on enhancing source code analysis tools by bringing program understanding to the design level. We found two different groups both have gone on the international success. They published their achievements on ASE and WCRE.
+
+The first group come from Department of Computer Science, University of California[1]. They found that pattern definitions are either driven by code structure or system behavior. Based on this theory they reclassifying the GoF patterns to facilitate pattern recognition. Then they come up with two ways to detect patterns. One is detecting structure-driven patterns which can be identified by inter-class relationships. And the other is detecting behavior-driven patterns, such as template matching, which is often used in detecting malicious or buggy code. Based on the methodology above all, they implemented a fully automated pattern detection tool, called PINOT(Pattern INference recOvery Tool), built from Jikes. They claim that PINOT can recognizes all the GoF patterns in the structure and behavior-driven categories. 
+
+While the other group solving the problem in a partly different way[2]. They put their eyes on COBOL, a procedural language that structures programs in 4 divisions: identification, environment, data and procedure divisions. The 4 divisions are used respectively to identify the program, to describe the input-ouput data sources, to declare the data structures and to define procedures to access and modify the program data structure. Based on the theory explained above and the principles of Model Driven Engineering, they describe a new BREX approach for COBOL applications. It has three steps including Variable Identification, Business Rule Identification and Business Rule Representation to extract business rules out of a COBOL application. The Variable Identification step reduces the number of variables to analyse by filtering out those that are not business relevant. It takes as input the COBOL model and returns the “business” variables. Business Rule Identification discovers the business rules related to the variables obtained in the Variable Identify step by static slicing techniques on the source code. Business Rule Representation is the last step of the framework. Its goal is to generate comprehensible textual and graphical representations of the discovered business rules and their orchestration.
+
+\subsection{limitations}
+
+The disadvantage of the first way is that its pattern recognition capability is not enough to recognize more complicated user-defined data structures. And the researchers didn’t explore the use of PINOT to detect design patterns in specific application domains.
+
+And The second group haven’t complete the preliminary validation and cast the framework to practice. And the framework can be better with additional modules covering other technologies maximizing the reuse opportunities.
+
+\end{document}
+
