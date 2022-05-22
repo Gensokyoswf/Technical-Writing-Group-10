@@ -1,0 +1,32 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+
+
+
+
+
+\begin{document}
+
+
+
+\section{Review Result}
+
+
+
+\subsection{Answer the research question}
+
+Abstract representation of the source code is necessary in reverse engineering. But as programs become more complex and larger, developers need better ways to visualize the source code. Many visualization methods have been created to achieve this goal. Lionel's team create UML sequence diagrams for Java software by accounting for issues related to distribution [1]. However, for large software systems UML diagrams will not provide adequate abstraction to visualize all the dependencies. So Juergen Rilling and S. P. Mudur use metaballs to visually map source code structures and analysis results onto 3D space [2].
+
+Lionel's team first devises a metamodel of scenario diagrams that is an adaptation and simplification of the UML 2.0 metamodel for sequence diagrams . This helps them define the requirements in terms of information they need to retrieve from the traces, which will then drive their instrumentation. They formalize these requirements as a metamodel of traces. These metamodels are then used as follows: The execution of the instrumented SUS produces a trace, which is transformed into an instance of the trace metamodel. This trace metamodel instance is then transformed into an instance of the scenario diagram metamodel, using algorithms which are directly derived from consistency rules (or constraints) they define between the two metamodels. To simplify the definition of constraints on UML class diagrams, they use Object Constraint Language to describe the rules.
+
+Metaballs, also known as metablobs, are a 3D object modeling technique which blends and transforms an assembly of particles with associated shapes into a more complex 3D shape. With the use of metaballs,  Juergen's team combines dynamic source analysis to selectively identify source code that is relevant at any point and combines it with 3D visualization techniques to reverse engineer and analyze source code, program executions, and program structures. Particles in the metaball metaphor can be mapped to software structures, with blobs representing an object or a function (distinguished by different shapes for particles) that are created dynamically during a program execution. The potential energy surrounding blobs has traditionally been used to indicate the influence amongst blobs. This can be very intuitively used to visualize the strength of the coupling among program artifacts. Besides, the dimensions or size of a blob can be used to indicate a desired measure of the software entity. The metaball metaphor provides a visually rich environment to depict entities in a software system along with visual techniques that enable mapping of software structure and dynamic behavior onto highly intuitive visual renderings. 
+
+
+
+\subsection{limitations}
+
+Some unstructured programming constructs can not be represented by UML 2.0 standard such as goto-like statements breaking out of multiple loop levels [1]. So In the Lionel's paper, they assumed these constructs are not present in the source code. As programs become more complex and larger, Lionel's method isn't suitable for most of the software programs now. Extending their method by a extended UML standard is needed in translating source code into UML diagrams.
+
+\end{document}
+
