@@ -1,0 +1,73 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+
+\begin{document}
+
+\section{Review Result}
+
+\subsection{Answer the research question}
+question:  Previous methods has a crucial flaw.  Object models should not expose the representations of objects.
+In case an one-to-many relationship for fileds represented as arrays, such as
+an implementation of employees association with a vector:
+\\
+\\
+\textbf{Vector employees;}
+\\
+\\This would result in an edge from Company to Vector , both
+inappropriately exposing the representation of the
+employees field and failing to show an association between
+Company and Person.
+
+
+To tackle the problem, Womble was an excellent tool[1].
+With the following features, Womble does not suffer from this problem and
+would still show an edge from Company to Person labeled
+employees:
+\begin{itemize}
+    \item Associations are inferred by examining the methods
+    of a class in addition to its declared fields. How a
+    field is used provides more useful clues to its role
+    than its declaration alone. Multiplicity and mutability of associations can both be determined.
+    \item Container classes, such as Vector, are handled
+    correctly most of the time: The container class does
+    not appear as a node, but results in appropriate associations.
+\end{itemize}
+
+
+To extract UML from byte code, Womble makes use of most of the information in the
+classfile. In particular, it uses the name of the class and the
+names of classes it extends or implements, the declarations
+of fields, static and virtual, the signatures of methods, and
+the bytecode instructions within methods.
+
+
+The basic structure of the object model is extracted as
+follows: A node is introduced for each class, with a subset
+edge for each extends or implements relationship. And,
+roughly speaking, for each field declaration in a class A
+of a field p of class B, an association labeled p from
+A to B is added. Using its unique mechanism of inferring associations,
+multiplicity and mutability.
+
+
+ Womble uses a collection of simple heuristics to extract
+object models from bytecode. The analysis is linear, mostly
+monotonic (as classes are added), and reasonably accurate.
+Despite its limitations,  it's an invaluable tool in our
+everyday work.
+
+\subsection{limitations}
+Womble has several deficiencies. The major analysis flaw
+is the inability to handle nested containers. It is quite
+common, for example, for a class
+C to have a field that is a
+hashtable mapping strings to vectors of some other element
+type E ; Womble fails to link C and E.
+Womble also fails to
+distinguish keys and values in a hashtable. Although
+Womble's heuristics work well for many of the containers
+that arise in practice, we have come to think that a more
+systematic approach is needed.
+
+\end{document}
