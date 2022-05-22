@@ -28,6 +28,8 @@ Automated generation of design models from source code have shown promise as a c
 \maketitle
 
 \section{Introduction}
+
+
 {\itshape Automated Generation of Design Models from Source Code} is a specific field of reverse engineering. It aims at generating design models from source code. The design models it generates can help developers understand the whole system, help evolve the system and check whether some behaviors of the system has errors. Since the scale and complexity of the system is increasing constantly, this technology becomes more and more significant.
 
 
@@ -48,9 +50,32 @@ According to the main challenge mentioned above, we have raised five specific re
 \subsection{Search process}
 
 
+    To find out the answer to these questions mentioned above, we used Google scholar, Baidu Scholar, 
+    CNKI, wanfang, IEEEexplore and ACM database.
+    Keywords such as reverse engineering, source code, graphic models,WCRE website ，ASE website,
+    relationship pattern and UML were used.
+    The criterion we took to include an particular research result is on fators such as
+    its ranking on CCF's ranklist, its relationship to the question we raised which is indicated in the
+    article's abstract.
+    After the researching progress, the following articles were selected:\\
+    \begin{tabular}{|c| p{5cm}|p{5cm}}
+      question & title & author\\
+      1&Reverse Engineering of Design Patterns from Java Source Code & Shi, N.  and  Olsson, R. A.\\
+      1&Extracting business rules from COBOL: A model-based framework& Cosentino, V.  and  Cabot, J.\\
+      2&Toward the Reverse Engineering of UML Sequence Diagrams for Distributed Java Software&Briand, Lionel C.  and  Labiche, Yvan  and  Leduc, Johanne\\
+      2&On the use of metaballs to visually map source code structures and analysis results onto 3D space&Rilling, J.  and  Mudur, S. P.\\
+      3&A deadlock detection tool for concurrent Java programs&DeMartini, Claudio and Iosif, Radu and Sisto, Riccardo\\
+      3&Model checking java programs using java pathfinder&Havelund, Klaus and Pressburger, Thomas\\
+      3&Bandera: Extracting finite-state models from Java source code&Corbett, James C and Dwyer, Matthew B and Hatcliff, John and Laubach, Shawn and Pasareanu, Corina S and Zheng, Hongjun and others\\
+      4&Lightweight extraction of object models from bytecode&Jackson, D.  and  Waingold, A.\\
+      5&A rule-based tool for reverse engineering from source code to graphical models&Huang, H.  and  Sugihara, K.  and  Miyamoto, I.\\
+    \end{tabular}
+
 \section{Review Result}
 
 \subsection{extract the business logic from the source code}
+
+
 Focusing on enhancing source code analysis tools by bringing program understanding to the design level. We found two different groups both have gone on the international success. They published their achievements on ASE and WCRE.
 
 The first group come from Department of Computer Science, University of California\cite{2006Reverse}. They found that pattern definitions are either driven by code structure or system behavior. Based on this theory they reclassifying the GoF patterns to facilitate pattern recognition. Then they come up with two ways to detect patterns. One is detecting structure-driven patterns which can be identified by inter-class relationships. And the other is detecting behavior-driven patterns, such as template matching, which is often used in detecting malicious or buggy code. Based on the methodology above all, they implemented a fully automated pattern detection tool, called PINOT(Pattern INference recOvery Tool), built from Jikes. They claim that PINOT can recognizes all the GoF patterns in the structure and behavior-driven categories. 
@@ -64,6 +89,8 @@ And The second group haven’t complete the preliminary validation and cast the 
 
 
 \subsection{visualize the design model for easier understanding}
+
+
 Abstract representation of the source code is necessary in reverse engineering. But as programs become more complex and larger, developers need better ways to visualize the source code. Many visualization methods have been created to achieve this goal. Lionel's team create UML sequence diagrams for Java software by accounting for issues related to distribution \cite{2006Toward}. However, for large software systems UML diagrams will not provide adequate abstraction to visualize all the dependencies. So Juergen Rilling and S. P. Mudur use metaballs to visually map source code structures and analysis results onto 3D space \cite{2002On}.
 
 Lionel's team first devises a metamodel of scenario diagrams that is an adaptation and simplification of the UML 2.0 metamodel for sequence diagrams . This helps them define the requirements in terms of information they need to retrieve from the traces, which will then drive their instrumentation. They formalize these requirements as a metamodel of traces. These metamodels are then used as follows: The execution of the instrumented SUS produces a trace, which is transformed into an instance of the trace metamodel. This trace metamodel instance is then transformed into an instance of the scenario diagram metamodel, using algorithms which are directly derived from consistency rules (or constraints) they define between the two metamodels. To simplify the definition of constraints on UML class diagrams, they use Object Constraint Language to describe the rules.
@@ -74,6 +101,8 @@ Metaballs, also known as metablobs, are a 3D object modeling technique which ble
 Some unstructured programming constructs can not be represented by UML 2.0 standard such as goto-like statements breaking out of multiple loop levels \cite{2006Toward}. So In the Lionel's paper, they assumed these constructs are not present in the source code. As programs become more complex and larger, Lionel's method isn't suitable for most of the software programs now. Extending their method by a extended UML standard is needed in translating source code into UML diagrams.
 
 \subsection{solve the problem of time-consuming model construction and state explosion}
+
+
 To attack the problem of model construction and state explosion of model checking technology, some make efforts to build a dedicated model checker for a specific programming language\cite{huch1999verification}. Others build tools such as JCAT \cite{demartini1999deadlock} 
 and Java PathFinder \cite{havelund2000model},that translate a program directly into a relatively expressive verifier input language. 
 
@@ -91,7 +120,9 @@ verifier-based representations called BIR. Through BIR, it's simple to  write tr
 For the approaches mentioned above, they all have some limitations. For example, building a model checker for a specific language makes it difficult to keep the checking engine state-of-the-art and new methods for curbing the state explosion must be recoded in the tool’s dedicated engine\cite{corbett2000bandera}. Building translation tools may result in larger models due to mismatch between the semantics of the two languages. Bandera, although has advantage on scalability, flexibility and extensibility, it for now still can't handle all features of Java such as  interfaces or user-thrown exceptions.
 
 \subsection{avoid the possible information loss when inferring relationships by attribute definition}
-question:  Previous methods has a crucial flaw.  Object models should not expose the representations of objects.
+
+
+Previous methods has a crucial flaw.  Object models should not expose the representations of objects.
 In case an one-to-many relationship for fileds represented as arrays, such as
 an implementation of employees association with a vector:
 \\
@@ -155,6 +186,8 @@ that arise in practice, we have come to think that a more
 systematic approach is needed.
 
 \subsection{build tools that accept multi languages}
+
+
 In recent years, some reverse engineering tools have been developed. However, they are oriented to software written in one specific programming language and extract only one or a few particular aspects of the software from source code. This limitation brings difficulties if the maintainers want to extract information from source code other than the information the tools provide. 
 
 Hai Huang presents a rule-based tool MG (Model Generator)\cite{1992A} for reverse engineering from source code to graphical models defined in MERA (MetaEntity-Relation-Attribute) that is a uniform language for a variety of graphical models. MG enables maintainers to obtain the information they need and produce software specification in different models by specifying rules for generating it. It is also independent of programming languages in which source code is written. It is able to generate four graphical models: IOPM (Internal Operational Profile Model) representing control flow, EOPM (External Operational Profile Model) representing external behavior of a system, FSM (Functional Structure Model), UIM (User Interface Model).
@@ -170,13 +203,56 @@ It is flexible to deal with different programming languages and extract various 
 
 A limitation of MG is that it is difficult to generate a certain type of models such as CPM by using only the rule-based approach. The more expressive power the rules have, the more variety of models can be generated and at the same time the more complicated the rules are. Complicated rules lead to difficulties to create rules and to verify the rules. Due to these problems, the rules should not be complicated and hence the expressive power of rules should be limited to some extent.
 \section{Conculsion}
+In this research, we focused on the task {\itshape Automated generation of design models 
+from source code have shown promise as a cost-effective means for precise understanding of the system.} 
+In this paper, we conclude several challenges still exist in this field and find some research results 
+corresponding to these challenges.
+
+
+Toward {\itshape How to extract the business logic from the source code}, detecting structure-driven patterns which can be identified by
+inter-class relationships and detecting behavior-driven patter is the 2 solutions we found.The disadvantage of the first way is that its pattern recognition capability is not enough to
+recognize more complicated user-defined data structures. And The second group haven’t complete the preliminary validation and cast the framework to
+practic.
+
+
+Toward {\itshape visualize the design model for easier understanding}, we found 2 tools one is by Lionel's team and another is called Meataballs.
+
+
+Toward {\itshape solve the problem of time-consuming model construction and state explosion}, Bandera and JCAT was detected.The architecture of Bandera is like a compile, and
+ the first one  translate a program directly into a relatively expressive verifier input language.
+
+
+ On {\itshape avoid the possible information loss when inferring relationships by attribute
+ definition}, Womble was an incredible tool which tackle most of the circumstance where the problem might be met.
+ Even though some drawback exists, it made a big contribution to this field and the tool is 
+ well popular among related workers.
+
+
+Finally, {\itshape build tools that accept multi language}, Hai Huang presents a rule-based tool MG (Model Generator) for reverse engineering from
+source code to graphical models defined in MERA (MetaEntity-Relation-Attribute) that is a uniform language for a variety of graphical model.
+
+
+There are many works dedicated to tackle the challenges in the field Automated generation of design models from source code have shown, through our investigation we deeply agree with that.
+However, these tools and method metioned above have theri unique drawback to be solved.
+
+
+
+
 
 \section{Reference}
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{reference}
 
 \section{Appendix}
-
-
+Team leader: Wenfei Shi\\
+Contributions: Yu Chen 100%, 
+Shaoke Cui 100\%,
+Xiaolei Gu 100\%,
+Zeyu Han 100\%,
+Wenfei Shi 100\%
+Weichen Zhang 100\%.
+\begin{figure}[h]
+  \centerline{\includegraphics[scale=0.2]{signature.jpg}}
+\end{figure}
 \end{document}
 \endinput
